@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Control</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">Smart Home</h1>
+                <div class="system-status">
+                    <span class="status-indicator online"></span>
+                    <span class="status-text">All Systems Online</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="config-btn" onclick="toggleConfig()">
+                    <span class="material-icons">settings</span>
+                </button>
+                <button class="menu-btn" onclick="toggleMenu()">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Quick Status Dashboard -->
+        <section class="quick-status">
+            <div class="status-cards">
+                <div class="status-card energy">
+                    <div class="status-icon">
+                        <span class="material-icons">bolt</span>
+                    </div>
+                    <div class="status-info">
+                        <h3>Energy</h3>
+                        <p class="status-value" id="total-energy">2.4 kW</p>
+                        <p class="status-label">Current Usage</p>
+                    </div>
+                </div>
+                <div class="status-card temperature">
+                    <div class="status-icon">
+                        <span class="material-icons">thermostat</span>
+                    </div>
+                    <div class="status-info">
+                        <h3>Climate</h3>
+                        <p class="status-value" id="avg-temperature">22°C</p>
+                        <p class="status-label">Average Temp</p>
+                    </div>
+                </div>
+                <div class="status-card devices">
+                    <div class="status-icon">
+                        <span class="material-icons">devices</span>
+                    </div>
+                    <div class="status-info">
+                        <h3>Devices</h3>
+                        <p class="status-value" id="active-devices">4/6</p>
+                        <p class="status-label">Active</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Device Controls -->
+        <section class="device-controls">
+            <div class="section-header">
+                <h2>Device Controls</h2>
+                <div class="room-filter">
+                    <select id="room-filter" onchange="filterDevices()">
+                        <option value="all">All Rooms</option>
+                        <option value="living_room">Living Room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="bathroom">Bathroom</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="outdoor">Outdoor</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="devices-grid" id="devices-grid">
+                <!-- Devices will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Chat Interface -->
+        <section class="chat-section" id="chat-section">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="chat-toggle" onclick="toggleChat()">
+                    <span class="material-icons">expand_less</span>
+                </button>
+            </div>
+            <div class="chat-container" id="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai-message">
+                        <div class="message-content">
+                            <p>Hello! I'm your smart home assistant. You can ask me to control devices, check status, or get information. Try saying "Turn on the living room lights" or "Set thermostat to 23 degrees".</p>
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <div class="quick-commands">
+                        <button class="quick-cmd" onclick="sendQuickCommand('Turn on all lights')">💡 All Lights On</button>
+                        <button class="quick-cmd" onclick="sendQuickCommand('Set temperature to 22 degrees')">🌡️ Comfort Mode</button>
+                        <button class="quick-cmd" onclick="sendQuickCommand('Turn off all devices')">🔌 All Off</button>
+                    </div>
+                    <div class="input-row">
+                        <input type="text" id="chat-input" placeholder="Ask me anything about your smart home..." onkeypress="handleChatKeyPress(event)">
+                        <button class="voice-btn" onclick="toggleVoiceInput()">
+                            <span class="material-icons">mic</span>
+                        </button>
+                        <button class="send-btn" onclick="sendMessage()">
+                            <span class="material-icons">send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Configuration Panel -->
+    <div class="config-panel" id="config-panel">
+        <div class="config-header">
+            <h3>Device Configuration</h3>
+            <button class="close-btn" onclick="toggleConfig()">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <div class="config-content">
+            <div class="config-tabs">
+                <button class="tab-btn active" onclick="switchConfigTab('devices')">Devices</button>
+                <button class="tab-btn" onclick="switchConfigTab('rooms')">Rooms</button>
+                <button class="tab-btn" onclick="switchConfigTab('settings')">Settings</button>
+            </div>
+            
+            <div class="tab-content" id="devices-tab">
+                <div class="config-actions">
+                    <button class="action-btn primary" onclick="addDevice()">
+                        <span class="material-icons">add</span>
+                        Add Device
+                    </button>
+                    <button class="action-btn" onclick="discoverDevices()">
+                        <span class="material-icons">search</span>
+                        Discover
+                    </button>
+                    <button class="action-btn" onclick="exportConfig()">
+                        <span class="material-icons">download</span>
+                        Export
+                    </button>
+                    <button class="action-btn" onclick="importConfig()">
+                        <span class="material-icons">upload</span>
+                        Import
+                    </button>
+                </div>
+                <div class="device-list" id="config-device-list">
+                    <!-- Configuration devices will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="tab-content hidden" id="rooms-tab">
+                <div class="config-actions">
+                    <button class="action-btn primary" onclick="addRoom()">
+                        <span class="material-icons">add</span>
+                        Add Room
+                    </button>
+                </div>
+                <div class="room-list" id="config-room-list">
+                    <!-- Rooms will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="tab-content hidden" id="settings-tab">
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <label>Theme</label>
+                        <select id="theme-select" onchange="changeTheme()">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>Temperature Unit</label>
+                        <select id="temp-unit" onchange="changeTempUnit()">
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>Voice Assistant</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="voice-enabled" checked onchange="toggleVoiceAssistant()">
+                            <label for="voice-enabled"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Modal -->
+    <div class="modal" id="device-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Device</h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container">
+        <!-- Notifications will appear here -->
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/device-manager.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

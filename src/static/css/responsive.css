@@ -1,0 +1,534 @@
+/* Smart Home Control - Responsive Styles */
+
+/* Mobile First - Base styles are for mobile */
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .app-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .system-status {
+    display: none;
+  }
+  
+  .main-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+    gap: var(--spacing-lg);
+  }
+  
+  .status-cards {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .status-card {
+    padding: var(--spacing-md);
+  }
+  
+  .devices-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .device-card {
+    padding: var(--spacing-md);
+  }
+  
+  .temperature-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .current-temp {
+    font-size: var(--font-size-xl);
+  }
+  
+  .quick-commands {
+    flex-direction: column;
+  }
+  
+  .quick-cmd {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .config-panel {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: var(--spacing-sm);
+  }
+  
+  .notification-container {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+  
+  .notification {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Large Mobile (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .status-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .devices-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .system-status {
+    display: flex;
+  }
+  
+  .status-text {
+    display: none;
+  }
+  
+  .quick-commands {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+}
+
+/* Tablet Portrait (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header-content {
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .main-container {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .status-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .devices-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .system-status .status-text {
+    display: block;
+  }
+  
+  .chat-container {
+    max-height: 300px;
+  }
+  
+  .chat-messages {
+    max-height: 200px;
+  }
+  
+  .config-panel {
+    width: 350px;
+    right: -350px;
+  }
+  
+  .quick-commands {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Tablet specific thermostat layout */
+  .device-card.thermostat {
+    grid-column: span 2;
+  }
+  
+  .thermostat-display {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    text-align: left;
+  }
+  
+  .temperature-circle {
+    margin: 0;
+  }
+  
+  .thermostat-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+/* Desktop Small (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .devices-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .chat-container {
+    max-height: 350px;
+  }
+  
+  .chat-messages {
+    max-height: 220px;
+  }
+  
+  /* Desktop layout for thermostat */
+  .device-card.thermostat {
+    grid-column: span 2;
+  }
+  
+  .thermostat-display {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+  
+  .thermostat-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .thermostat-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: var(--spacing-sm);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-md);
+  }
+  
+  .stat-value {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+  }
+}
+
+/* Desktop Large (1200px+) */
+@media (min-width: 1200px) {
+  .main-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+  
+  .sidebar {
+    position: sticky;
+    top: calc(80px + var(--spacing-xl));
+  }
+  
+  .devices-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .chat-section {
+    margin-top: 0;
+  }
+  
+  .chat-container {
+    max-height: 500px;
+  }
+  
+  .chat-messages {
+    max-height: 350px;
+  }
+  
+  /* Enhanced thermostat for large screens */
+  .device-card.thermostat {
+    grid-column: span 2;
+    padding: var(--spacing-xl);
+  }
+  
+  .thermostat-display {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--spacing-2xl);
+    align-items: center;
+  }
+  
+  .temperature-circle {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .current-temp {
+    font-size: 32px;
+  }
+  
+  .thermostat-schedule {
+    display: block;
+    margin-top: var(--spacing-lg);
+  }
+  
+  .schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .schedule-time {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .schedule-temp {
+    color: var(--accent-primary);
+    font-weight: 500;
+  }
+}
+
+/* Ultra Wide (1400px+) */
+@media (min-width: 1400px) {
+  .main-container {
+    max-width: 1400px;
+    grid-template-columns: 2.5fr 1fr;
+  }
+  
+  .devices-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .status-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Add fourth status card for ultra-wide */
+  .status-card.security {
+    display: block;
+  }
+  
+  .status-card.security::before {
+    background: var(--accent-error);
+  }
+  
+  .status-card.security .status-icon {
+    background: rgba(255, 68, 68, 0.1);
+    color: var(--accent-error);
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+  .header {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .main-container {
+    padding: var(--spacing-md);
+    gap: var(--spacing-lg);
+  }
+  
+  .chat-container {
+    max-height: 200px;
+  }
+  
+  .chat-messages {
+    max-height: 120px;
+  }
+  
+  .config-panel {
+    height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .device-icon,
+  .status-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .status-indicator {
+    animation: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+    border-top-color: var(--accent-primary);
+  }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1F3F4;
+    --text-primary: #202124;
+    --text-secondary: #5F6368;
+    --text-muted: #9AA0A6;
+    --border-color: #DADCE0;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+  }
+  
+  .device-card,
+  .status-card,
+  .chat-section {
+    box-shadow: 0 1px 3px var(--shadow-light);
+  }
+  
+  .device-card:hover,
+  .status-card:hover {
+    box-shadow: 0 4px 12px var(--shadow-medium);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .header-right,
+  .chat-section,
+  .config-panel,
+  .modal,
+  .loading-overlay,
+  .notification-container {
+    display: none !important;
+  }
+  
+  .main-container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .device-card,
+  .status-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    background: white !important;
+    color: black !important;
+  }
+  
+  .devices-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Focus Styles for Accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  .config-btn:focus,
+  .menu-btn:focus,
+  .power-toggle:focus,
+  .slider:focus,
+  .action-btn:focus,
+  .quick-cmd:focus,
+  .voice-btn:focus,
+  .send-btn:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (pointer: coarse) {
+  .power-toggle,
+  .mode-btn,
+  .quick-cmd,
+  .action-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .temperature-circle {
+    cursor: grab;
+  }
+  
+  .temperature-circle:active {
+    cursor: grabbing;
+  }
+}
+
+/* Hover Device Optimizations */
+@media (hover: hover) {
+  .device-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+  }
+  
+  .device-card:hover::before {
+    opacity: 1;
+  }
+  
+  .status-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent);
+    transform: translate(-50%, -50%);
+    transition: all var(--transition-medium);
+  }
+  
+  .status-card:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+}
+
