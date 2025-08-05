@@ -5,11 +5,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
 from flask_cors import CORS
-from src.models.device import db, Device, DeviceState, Room
+from src.models.device import db as device_db, Device, DeviceState, Room
+from src.models.sensor import SensorDevice, SensorReading, OTAUpdate, SensorAlert
 from src.routes.user import user_bp
 from src.routes.devices import devices_bp
 from src.routes.config import config_bp
 from src.routes.chat import chat_bp
+from src.routes.sensors import sensors_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
@@ -25,18 +27,19 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Enable CORS for all routes
 CORS(app)
 
-# Initialize database
-db.init_app(app)
+# Initialize database (use single db instance)
+device_db.init_app(app)
 
 # Register blueprints
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(devices_bp, url_prefix='/api')
 app.register_blueprint(config_bp, url_prefix='/api')
 app.register_blueprint(chat_bp, url_prefix='/api')
+app.register_blueprint(sensors_bp, url_prefix='/api')
 
 # Create tables and initialize data
 with app.app_context():
-    db.create_all()
+    device_db.create_all()
     
     # Initialize with default configuration if no devices exist
     if Device.query.count() == 0:

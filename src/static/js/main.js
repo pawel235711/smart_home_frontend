@@ -605,3 +605,79 @@ function adjustTemperature(deviceId) {
     showNotification('Use the slider below to adjust temperature', 'info');
 }
 
+
+// Navigation functionality for sections
+function showSection(sectionName) {
+    // Hide all sections
+    const sections = ['device-controls', 'sensor-dashboard-section', 'chat-section'];
+    sections.forEach(section => {
+        const element = document.querySelector(`.${section}`);
+        if (element) {
+            element.style.display = 'none';
+        }
+    });
+    
+    // Show selected section
+    const targetSection = document.querySelector(`.${sectionName}`);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+    
+    // Update navigation active state if nav exists
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    const activeNavItem = document.querySelector(`[data-section="${sectionName}"]`);
+    if (activeNavItem) {
+        activeNavItem.classList.add('active');
+    }
+}
+
+// Add navigation event listeners if navigation exists
+function setupNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    if (navItems.length === 0) return; // No navigation found
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const section = this.dataset.section;
+            if (section === 'dashboard') {
+                showSection('device-controls');
+            } else if (section === 'sensors') {
+                showSection('sensor-dashboard-section');
+                // Initialize sensor manager if not already done
+                if (window.sensorManager) {
+                    window.sensorManager.renderSensorDashboard();
+                }
+            } else if (section === 'chat') {
+                showSection('chat-section');
+            } else if (section === 'settings') {
+                toggleConfig();
+            }
+        });
+    });
+    
+    // Show dashboard by default
+    showSection('device-controls');
+}
+
+// Update the setupEventListeners function to include navigation
+function setupEventListeners() {
+    setupNavigation();
+    
+    // Existing event listeners...
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (isConfigOpen) {
+                toggleConfig();
+            }
+            closeModal();
+        }
+    });
+    
+    // Update quick status every 30 seconds
+    setInterval(updateQuickStatus, 30000);
+}
+
