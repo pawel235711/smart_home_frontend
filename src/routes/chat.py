@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 
-from models.device import Device, DeviceState
+from src.models.device import Device, DeviceState
 
 chat_bp = Blueprint('chat', __name__)
 
