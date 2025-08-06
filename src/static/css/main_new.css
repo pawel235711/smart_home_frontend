@@ -1,0 +1,486 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Tablet Container */
+.tablet-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+    border-radius: 24px;
+    border: 8px solid #000;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+}
+
+.smart-home-interface {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.app-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.voice-assistant {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #6366f1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.voice-assistant .material-icons {
+    font-size: 18px;
+}
+
+.time {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Navigation Icons */
+.nav-icons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.nav-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-icon.active {
+    background: #00d4ff;
+    color: #000;
+}
+
+.nav-icon .material-icons {
+    font-size: 20px;
+}
+
+/* Main Content */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    flex: 1;
+}
+
+/* Left Sidebar */
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.control-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.climate-mode {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-right: auto;
+    margin-left: 12px;
+}
+
+.section-header .material-icons {
+    color: #b0b0b0;
+    font-size: 20px;
+}
+
+/* Light Control */
+.light-control {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.light-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.light-name {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.light-percentage {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.light-slider {
+    position: relative;
+}
+
+.slider-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    position: relative;
+}
+
+.slider-fill {
+    height: 100%;
+    background: #00d4ff;
+    border-radius: 3px;
+    transition: width 0.2s ease;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: -3px;
+    width: 12px;
+    height: 12px;
+    background: #00d4ff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: left 0.2s ease;
+}
+
+/* Climate Control */
+.climate-control {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.temperature-display {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.climate-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-name {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.climate-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.climate-icons .material-icons {
+    font-size: 18px;
+    color: #b0b0b0;
+}
+
+.temperature-chart {
+    margin-top: 8px;
+}
+
+/* Floor Plan */
+.floor-plan {
+    margin: 16px 0;
+}
+
+.floor-plan-svg {
+    width: 100%;
+    height: auto;
+}
+
+.pay-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b0b0b0;
+    font-size: 14px;
+    margin-top: 16px;
+}
+
+.pay-section .material-icons {
+    font-size: 18px;
+}
+
+/* Right Content */
+.right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Greeting Section */
+.greeting-section {
+    margin-bottom: 8px;
+}
+
+.greeting {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.weather-info {
+    font-size: 16px;
+    color: #b0b0b0;
+    margin-bottom: 16px;
+}
+
+.view-schedule-btn {
+    background: none;
+    border: none;
+    color: #00d4ff;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Info Cards */
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.card-date {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-right: auto;
+    margin-left: 12px;
+}
+
+.card-header .material-icons {
+    color: #b0b0b0;
+    font-size: 20px;
+}
+
+/* Energy Card */
+.energy-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.energy-usage {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.energy-chart {
+    margin: 8px 0;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #b0b0b0;
+}
+
+/* Security Card */
+.security-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #b0b0b0;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    color: #ffffff;
+    border-bottom-color: #00d4ff;
+}
+
+.camera-view {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.camera-placeholder .material-icons {
+    font-size: 32px;
+    color: #b0b0b0;
+}
+
+.camera-placeholder p {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+/* Assistant Section */
+.assistant-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.suggestion-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.suggestion-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.suggestion-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.suggestion-btn .material-icons:first-child {
+    color: #00d4ff;
+    font-size: 20px;
+}
+
+.suggestion-btn .material-icons:last-child {
+    color: #b0b0b0;
+    font-size: 18px;
+    margin-left: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tablet-container {
+        max-width: 100%;
+        aspect-ratio: 3/4;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .smart-home-interface {
+        padding: 16px;
+    }
+    
+    .app-title {
+        font-size: 20px;
+    }
+    
+    .greeting {
+        font-size: 24px;
+    }
+    
+    .temperature-display {
+        font-size: 36px;
+    }
+}
+
